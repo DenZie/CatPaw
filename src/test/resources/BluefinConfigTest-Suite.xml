@@ -1,0 +1,86 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="100" verbose="1" name="Bluefin Config Test Suite" skipfailedinvocationcounts="false" junit="false" parallel="false" data-provider-thread-count="50" annotations="JDK">
+  <listeners>
+    <listener class-name="com.paypal.test.bluefin.reports.runtime.DebugListener" />
+  </listeners>
+  
+    <!-- SELENIUM CONFIGURATION -->
+    <!-- If parameter is empty string or omitted, please see defaults -->
+    <!-- optional, defaults to qa-autocon10.sc4.paypal.com  -->
+    <parameter name="seleniumhost" value="" />
+    <!-- optional, defaults to 4444  -->
+    <parameter name="seleniumport" value="" />
+    <!-- optional, defaults to *firefox  -->
+    <parameter name="browser" value="*firefox" />	
+    <!-- optional, defaults to false  -->
+	<parameter name="useLocalRC" value="true" />
+	<!-- optional, defaults no  -->
+	<parameter name="profileName" value="SeleniumTestProfile" />
+	
+    <!-- STAGE & HOST CONFIGURATION -->
+    <!-- If parameter is empty string or omitted, please see defaults -->
+    <!-- mandatory, defaults to no  -->
+    <parameter name="hostname" value="dead-host.sc4.paypal.com" />
+    <!-- optional, defaults to current username -->
+    <parameter name="sshUser" value="ltruong" />
+    <!-- optional, defaults to STAGEXXXX (based off hostname) -->
+    <parameter name="stageName" value="stage2sc5403" />
+    <!-- optional, defaults to URL is based off hostname -->
+    <parameter name="paypalURL" value="https://www.dead-host.qa.paypal.com" />
+    <!-- optional, defaults to URL is based off hostname -->
+    <parameter name="paypalAdminURL" value="" />
+    <!-- optional, site of stage default is US -->
+    <parameter name="site" value="" />
+
+    <!-- BLUEFIN AND JAWS FILES LOCATIONS -->
+    <!-- optional, default to bluefinFiles -->
+    <parameter name="basedir" value=""  />
+    <!-- optional, default to ${bluefinFiles.basedir}/bluefinLogs -->
+    <parameter name="logsDir" value=""  />
+    <!-- optional, default to ${bluefinFiles.basedir}/bluefinWorkDir -->
+    <parameter name="workDir"  value="" />
+ 
+ 	<!-- optional, defaults to https://api.stagexxx.paypal.com/nvp (based off hostname) -->
+    <parameter name="nvpUrl"  value="" />
+  
+ 	<!-- Test cases groups configurations -->
+ 	<!-- This group includes all test cases which have in -->
+ 	<!-- @Test(groups = { "P1"}) annotation before test case method declaration-->
+ 	<!-- exclude test cases  @Test(groups = { "somename"})-->
+ 	<!-- will run on hostname stage2sc5402.sc4.paypal.com -->
+ 	<!-- only com.paypal.test.bluefin.platform.config.BluefinConfigTest -->
+ 	<!-- will be analyzed for existence such test cases -->
+	<test verbose="2" name="P1" annotations="JDK">
+		<parameter name="hostname" value="dead-host.sc4.paypal.com" />
+	  <groups>
+	   <run>
+	     <exclude name="somename"  />
+	     <include name="P1"  />
+	   </run>
+		</groups>
+	  <classes>
+	    <class name="com.paypal.test.bluefin.platform.config.BluefinConfigTest"/>
+	  </classes>
+	</test>
+	
+	
+ 	<!-- This group includes all test cases which have in -->
+ 	<!-- @Test(groups = { "P4"}) annotation before test case method declaration-->
+ 	<!-- exclude test cases  @Test(groups = { "somename"})-->
+ 	<!-- will run on hostname stage2sc5411.sc4.paypal.com -->
+ 	<!-- only com.paypal.test.bluefin.platform.config.BluefinConfigTest -->
+ 	<!-- will be analyzed for existence such test cases -->	
+	<test verbose="2" name="P4" annotations="JDK">
+	<parameter name="hostname" value="dead-host.sc4.paypal.com" />
+	  <groups>
+	   <run>
+	     <exclude name="somename"  />
+	     <include name="P4"  />
+	   </run>
+		</groups>
+	  <classes>
+	    <class name="com.paypal.test.bluefin.platform.config.BluefinConfigTest"/>
+	  </classes>
+	</test>
+</suite>
+

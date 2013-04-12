@@ -1,0 +1,4 @@
+com.dd.test.catpaw.platform.grid.SeleniumGridListener
+com.dd.test.catpaw.platform.asserts.SoftAssertsListener
+com.dd.test.catpaw.reports.reporter.html.HtmlReporterListener
+com.dd.test.catpaw.reports.reporter.runtimereport.RuntimeReporterListener

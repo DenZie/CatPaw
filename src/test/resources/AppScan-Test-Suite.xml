@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="7" verbose="1" name="AppScan Test Suite" skipfailedinvocationcounts="false" junit="false" parallel="methods" 
+    data-provider-thread-count="50" annotations="JDK">
+  <listeners>
+    <listener class-name="com.paypal.test.bluefin.reports.runtime.DebugListener" />
+  </listeners>
+  
+	<!-- SELENIUM CONFIGURATION -->
+	<parameter name="browser" value="*firefox" />	
+	<parameter name="useLocalRC" value="false" />
+	<parameter name="profileName" value="SeleniumProfile" />
+	 <parameter name="performAppScan" value="true" />
+	 <parameter name="hostname" value="stage2vm5942.sc4.paypal.com"/>
+  <test verbose="2" name="WebTest-Threaded" annotations="JDK">
+ 
+  	<classes>
+  		<class name="com.paypal.test.bluefin.utilities.appscan.AppScanTest"></class>
+  	</classes>
+  </test>
+</suite>
+

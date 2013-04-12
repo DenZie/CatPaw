@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="100" verbose="1" name="Bluefin Core Master Test Suite"
+	skipfailedinvocationcounts="false" junit="false" parallel="false"
+	data-provider-thread-count="50" annotations="JDK">
+
+	<listeners>
+		<listener class-name="com.paypal.test.bluefin.reports.runtime.DebugListener" />
+	</listeners>
+
+	<suite-files>
+		<suite-file path="Firefox-UnitTest-Suite.xml"></suite-file>
+		<suite-file path="Chrome-UnitTest-Suite.xml"></suite-file>
+		<suite-file path="IE-UnitTest-Suite.xml"></suite-file>
+		<suite-file path="Basic-Unit-Tests.xml"></suite-file>
+		<suite-file path="WebTestThreaded-Suite.xml"></suite-file>
+	</suite-files>
+</suite>
+

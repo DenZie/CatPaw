@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<document>
+
+	<properties>
+		<title>Bluefin Support Notes</title>
+	</properties>
+
+	<body>
+		<section name="Bluefin Support Notes">
+			<p>
+				Bluefin is built using IBMJDK 6 and is also known to be compatible with the
+				following JDKs:
+            </p>
+			<ul> 
+				<li>Sun JDK 6</li>
+				<li>Sun JDK 5</li>
+				<li>IBM JDK 5</li>
+			</ul>
+			<p>
+                Bluefin is reported to work on the following operating systems:
+            </p>
+            <ul>
+                <li>Windows XP with Cygwin</li>
+                <li>Windows 2003 server with Cygwin</li>
+                <li>Windows 7 Enterprise with Cygwin</li>
+                <li>Mac OSX 10.6.x</li>
+            </ul>
+            <p>
+            	Bluefin is compatible with TestNG version 6.8 or above and maven 2.x.
+            </p>
+            <p>
+				Here is a list of browsers and versions support by Bluefin:
+            </p>
+			<ul>
+				<li>Firefox 3.6 and above (upto Firefox 11 ONLY)</li>
+				<li>Internet Explorer 6.0 and above</li>
+				<li>Google chrome 15.x</li>
+				<li>iPhone device /simulator. Refer <a href="http://code.google.com/p/selenium/wiki/IPhoneDriver">link</a> for details</li>
+				<li>Android simulator. Refer <a href="http://code.google.com/p/selenium/wiki/AndroidDriver">link</a> for details.</li>
+			</ul>
+			<p>
+				Here is a list of current known issues/limitations:
+            </p>
+			<ul>
+				<li>Safari is not supported, since WebDriver doesn't support Safari yet.</li>
+			</ul>
+		</section>
+	</body>
+</document>

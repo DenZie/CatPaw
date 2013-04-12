@@ -1,0 +1,46 @@
+<project name="Bluefin Core">
+	<version position="left" />
+	<bannerLeft>
+		<name>Bluefin Core</name>
+		<src>images/banner.gif</src>
+	</bannerLeft>
+	<bannerRight>
+		<name>PayPal Quality Infrastructure</name>
+		<src>images/banner-right.gif</src>
+	</bannerRight>
+	<publishDate format="dd MMMMMMMMM yyyy" />
+	<body>
+		<links>
+			<item name="Bluefin GUI"
+				href="http://bluefinlvs24.qa.paypal.com/bluefin-project-site/latest_stable/Bluefin-GUI/" />
+			<item name="Jaws"
+				href="http://bluefinlvs24.qa.paypal.com/jaws-project-site/1.2.0/index.html" />
+		</links>
+		<menu name="Project Overview">
+			<item name="Welcome" href="/index.html" />
+			<item name="Release Notes" href="/changes-report.html"/>
+			<item name="Support Notes" href="/supportNotes.html" />
+		</menu>
+		<menu name="Getting Started">
+			<item name="What is Bluefin" href="/whatIsBluefin.html" />
+			<item name="Creating a Bluefin Development Environment" href="/createBluefinDevEnv.html" />
+			<item name="Maven Archetype" href="/mavenArchetype.html" />
+			<item name="Contributing to Bluefin" href="/contributingToBluefin.html" />
+		</menu>
+		<menu name="Documentation">
+			<item name="Javadoc" href="/apidocs/index.html" />
+			<item name="FAQ" href="/faq.html" />
+		</menu>
+		<menu name="Support">
+			<item name="Mailing Lists" href="/mail-lists.html" />
+			<item name="Bluefin Core Forum"
+				href="http://devprod.paypal.com/devprodforums/viewforum.php?f=110" />
+				<item name="Bluefin Users Forum"
+				href="http://devprod.paypal.com/devprodforums/viewforum.php?f=82" />
+			<item name="Submitting Bugs" href="/submittingBugs.html" />
+		</menu>
+		<menu ref="reports" />
+		<menu ref="parent" />
+		<menu ref="modules" />
+	</body>
+</project>

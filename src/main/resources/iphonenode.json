@@ -1,0 +1,18 @@
+{
+  "capabilities":
+      [
+        {
+          "browserName": "iPhone",
+          "maxInstances": 1
+        }
+      ],
+  "class": "org.openqa.grid.common.RegistrationRequest",
+  "configuration":
+  {
+    "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
+    "maxSession": 1,
+    "port": 3001,
+    "host": "localhost",
+    "remoteHost":"http://localhost:3001"
+  }
+}
