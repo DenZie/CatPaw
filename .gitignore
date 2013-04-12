@@ -11,8 +11,4 @@
 
 *.prefs
 
-target/classes/META-INF/services/org.testng.ITestNGListener
-
-target/classes/Resources.properties
-
-target/classes/RuntimeReporterResources.properties
+target/*
