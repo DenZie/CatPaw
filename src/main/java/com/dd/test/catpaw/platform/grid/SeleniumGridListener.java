@@ -53,7 +53,6 @@ public class SeleniumGridListener implements IInvokedMethodListener, ISuiteListe
 				&& method.getTestMethod().getConstructorOrMethod().getMethod().getAnnotation(WebTest.class) != null;
 
 		TestCaseUtility.appendECaseId(method, testResult);
-//		TestCaseCalData.setTime(true, method, testResult);
 		if (webTest) {
 			try {
 
@@ -202,10 +201,6 @@ public class SeleniumGridListener implements IInvokedMethodListener, ISuiteListe
 		// logger.entering(new Object[] { name, removeSessionFromMap });
 		try {
 			if ((sessionMap.get(name) != null) && (sessionMap.get(name).getWebDriver() != null)) {
-//				if (logger.isLoggable(Level.FINE)) {
-//					// logger.log(Level.FINE, "Thread " + Thread.currentThread().getId() + " closing " + name + " = "
-//							+ sessionMap.get(name).toString());
-//				}
 				Grid.closeSession(sessionMap.get(name));
 			}
 		} catch (Throwable e) {
@@ -215,10 +210,6 @@ public class SeleniumGridListener implements IInvokedMethodListener, ISuiteListe
 		}
 
 		if (removeSessionFromMap) {
-//			if (logger.isLoggable(Level.FINE)) {
-//				// logger.log(Level.FINE, "Thread " + Thread.currentThread().getId() + " removing from session map "
-//						+ name);
-//			}
 			sessionMap.remove(name);
 		}
 		// logger.exiting();

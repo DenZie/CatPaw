@@ -297,20 +297,6 @@ public class CatPawConfig {
 			config.setProperty(CatPawConfigProperty.SELENIUM_HOST.getName(), "localhost");
 		}
 
-		// Set the SSH_USER property to current execution user if not explicitly
-		// defined in config file
-		String sshUser = config.getString(CatPawConfigProperty.SSH_USER.getName());
-		if ((sshUser == null) || (sshUser.equals(""))) {
-			// since we say it defaults to the current user name, let's set it
-			// explicitly.
-			config.setProperty(CatPawConfigProperty.SSH_USER.getName(), System.getProperty("user.name"));
-		}
-
-		// if CAL_LOG is set to true make sure to set AUTO_SCREEN_SHOT to true
-		if (config.getProperty(CatPawConfigProperty.CAL_LOG.getName()).equals("true")) {
-			setConfigProperty(CatPawConfigProperty.AUTO_SCREEN_SHOT, "true");
-		}
-
 	}
 
 	/*
@@ -338,12 +324,6 @@ public class CatPawConfig {
 		// STAGE_NAME
 		if ((configProperty.equals(CatPawConfigProperty.STAGE_NAME.getName())) &&
 			(config.getProperty(CatPawConfigProperty.STAGE_NAME.getName()) == null)) {
-			// Jaws requires a HOSTNAME to configure STAGE_NAME and rightly so.
-			// However, CatPaw has use cases where a  stage is not
-			// required and thus HOSTNAME can be null. Furthermore, BFReporter
-			// will look for a STAGE_NAME at initialization.
-
-			// So, if HOSTNAME is null or not defined just return.
 			if (config.getProperty(CatPawConfigProperty.HOSTNAME.getName()).equals("")) {
 				return;
 			}
@@ -461,54 +441,55 @@ public class CatPawConfig {
 		/**
 		 * Automatically take screen shots.<br>
 		 */
-		AUTO_SCREEN_SHOT("autoScreenShot", "true", ""),
+		AUTO_SCREEN_SHOT("autoScreenShot", "true"),
+		
 
 		/**
 		 * Selenium host might be localhost or other where server is running.<br>
 		 * Default is set to <b>clawslvs24.qa.paypal.com</b>
 		 */
-		SELENIUM_HOST("seleniumhost", "localhost", ""),
+		SELENIUM_HOST("seleniumhost", "seleniumhost.denzie.com"),
 
 		/**
 		 * Selenium port, any port where Selenium is running.<br>
 		 * Default is set to <b>4444</b>
 		 */
-		SELENIUM_PORT("seleniumport", "4444", ""),
+		SELENIUM_PORT("seleniumport", "4444"),
 
 		/**
 		 * Use or not localhost RC.<br>
 		 * Default is set to <b>false</b>
 		 */
-		SELENIUM_USE_LOCAL_RC("useLocalRC", "false", ""),
+		SELENIUM_USE_LOCAL_RC("useLocalRC", "false"),
 
 		/**
 		 * Name of Browser's profile used<br>
 		 * Value used when SELENIUM_USE_LOCAL_RC is set to true<br>
 		 * <b>No defaults</b>
 		 */
-		SELENIUM_PROFILE_NAME("profileName", "default", ""),
+		SELENIUM_PROFILE_NAME("profileName", "default"),
 		
 		/**
 		 * The name of the JSON file that can be used, incase for a local run
 		 * the end user wants to create their own customization for the local grid.
 		 */
-		SELENIUM_LOCAL_GRID_CONFIG_FILE("localGridConfigFile","localnode.json",""),
+		SELENIUM_LOCAL_GRID_CONFIG_FILE("localGridConfigFile","localnode.json"),
 		
-		SELENIUM_LOCAL_GRID_IPHONE_CONFIG_FILE("localGridIPhoneConfigFile","iphonenode.json",""),
+		SELENIUM_LOCAL_GRID_IPHONE_CONFIG_FILE("localGridIPhoneConfigFile","iphonenode.json"),
 		
 		/**
 		 * The path to the chromedriver executable on the local machine.
 		 * This parameter is taken into consideration for local runs involving googlechrome
 		 * browser alone. 
 		 */
-		SELENIUM_CHROMEDRIVER_PATH("chromeDriverPath","",""),
+		SELENIUM_CHROMEDRIVER_PATH("chromeDriverPath",""),
 		
 		/**
 		 * Use this parameter to set the user agent for firefox when working with Mobile version.
 		 * This parameter should be set in conjunction with the parameter 
 		 * {@link CatPawConfigProperty#BROWSER}
 		 */
-		SELENIUM_USERAGENT("userAgent", "", ""),
+		SELENIUM_USERAGENT("userAgent", ""),
 
 		/**
 		 * Use this parameter to indicate if your remote runs are to be run against the sauce lab grid or against the QI
@@ -516,44 +497,44 @@ public class CatPawConfig {
 		 * we are to ensure that fetching of WebDriver node IP and Port is to be disabled.
 		 *
 		 */
-		SELENIUM_USE_SAUCELAB_GRID("useSauceLabGrid", "false", ""),
+		SELENIUM_USE_SAUCELAB_GRID("useSauceLabGrid", "false"),
 
 		/**
 		 * Directory with Excel files to read info about GUI controls from.<br>
 		 * Default is set to <b>GUIData</b> in resources
 		 */
-		GUI_DATA_DIR("GUIDataDir", "GUIData", ""),
+		GUI_DATA_DIR("GUIDataDir", "GUIData"),
 
 		/**
 		 * Site will show country used for tests.<br>
 		 * Default is set to <b>US</b>
 		 */
-		SITE_LOCALE("siteLocale", "US", ""),
+		SITE_LOCALE("siteLocale", "US"),
 
 		/**
 		 * Browser specified by user.<br>
 		 * Default is set to <b>firefox</b>
 		 */
-		BROWSER("browser", "*firefox", ""),
+		BROWSER("browser", "*firefox"),
 
 		/**
 		 * version specified by user when working with custom browser needs.<br>
 		 */
-		BROWSER_CAPABILITY_VERSION("version", "", ""),
+		BROWSER_CAPABILITY_VERSION("version", ""),
 
 		/**
 		 * platform is specified by user.<br>
 		 * Default is set to <b>XP</b> Supporting values are: ANDROID, ANY,
 		 * LINUX, MAC, UNIX, VISTA, WINDOWS, XP.
 		 */
-		BROWSER_CAPABILITY_PLATFORM("platform", "ANY", ""),
+		BROWSER_CAPABILITY_PLATFORM("platform", "ANY"),
 		
 		/**
 		 * Should javascript capability be enabled on the browser for the AUT.
 		 * By default javascript will be enabled on the client browser, but this flag can be used
 		 * to toggle this setting.
 		 */
-		BROWSER_CAPABILITY_SUPPORT_JAVASCRIPT("enableJavaScript","true",""),
+		BROWSER_CAPABILITY_SUPPORT_JAVASCRIPT("enableJavaScript","true"),
 		
 		// stage validation settings
 		/**
@@ -565,7 +546,7 @@ public class CatPawConfig {
 		 * to a list of services supposed to start after the build. This 
 		 * list of buildProfiles is maintained by the ICE team.
 		 */
-		BUILD_PROFILES("buildProfiles", null, ""),
+		BUILD_PROFILES("buildProfiles", null),
 		
 		/**
 		 * extraProfiles is a list of keys pointing to the entries of services
@@ -575,59 +556,23 @@ public class CatPawConfig {
 		 * to specify an addition set of services other than those in buildProfile.
 		 * This list of extraProfiles is maintained by each vertical.
 		 */
-		EXTRA_SERVICES("extraServices", null, ""),
-
-		// ezTracker config settings
-		/**
-		 * Group Name specified by user to update the test results into
-		 * eZTracker.<br>
-		 * Default is set to 'Unknown' </b>
-		 */
-		GROUP_NAME("groupName", "Unknown", ""),
-
-		/**
-		 * Push Name specified by user to update the test results into
-		 * eZTracker. <br>
-		 * Default is set to 'Push' </b>
-		 */
-		PUSH_NAME("pushName", "Push", ""),
-
-		/**
-		 * Release Cycle specified by user to update the test results into
-		 * eZTracker. <br>
-		 * Default is set to 'Unknown'<b>
-		 */
-
-		RELEASE_CYCLE("releaseCycle", "Unknown", ""),
-
-		/**
-		 * if updateEzTracker flag is true test results update in to eZTracker. <br>
-		 * default is set to false
-		 */
-
-		UPDATE_EZTRACKER("updateEzTracker", "false", ""),
+		EXTRA_SERVICES("extraServices", null),
 		
+		/**
+		 * Timeout for an execution command, in milliseconds.<br>
+		 * Used in Jaws by {@link com.paypal.test.jaws.execution.Execution}.<br>
+		 * Also used in Bluefin to configure Selenium timeouts/<br>
+		 * Default is set to <b>120000</b>
+		 */
+		EXECUTION_TIMEOUT("executionTimeout", "120000"),
+
+
 		/**
 		 * Turn this flag ON to see GUI actions such as loading a URL, click/setting text etc.,
 		 * being logged into the test reports that get generated by CatPaw.
 		 *
 		 */
-		ENABLE_GUI_LOGGING("enableGUILogging", "false", ""),
-
-		/**
-		 * calLog - flag to turn on and off CAL logging default is set to false
-		 */
-		CAL_LOG("calLog", "false", ""),
-
-		// AppScan config settings
-
-		/**
-		 * Indicate whether AppScan Has to be done or not. When this flag is set
-		 * to <b>true</b> all UI Navigations would go through the AppScan proxy <br>
-		 * Default value is set to <b>false</b>
-		 * 
-		 */
-		PERFORM_APPSCAN("performAppScan", "false", ""),
+		ENABLE_GUI_LOGGING("enableGUILogging", "false"),
 
 		/**
 		 * Proxy Server settings incase required by the user. By default the
@@ -635,14 +580,14 @@ public class CatPawConfig {
 		 * for 
 		 * 
 		 */
-		PROXY_HOST("ProxyHost", "sc4-scan01.corp.ebay.com", ""),
+		PROXY_HOST("ProxyHost", "sc4-scan01.corp.ebay.com"),
 
 		/**
 		 * Proxy Server settings incase required by the user. By default the
 		 * proxy server port is configured to point to the AppScan Proxy Server
 		 * port for 
 		 */
-		PROXY_PORT("ProxyPort", "9808", ""),
+		PROXY_PORT("ProxyPort", "9808"),
 
 		// Settings shared with Jaws
 		/**
@@ -651,7 +596,7 @@ public class CatPawConfig {
 		 * No defaults<br>
 		 * <b>Mandatory</b> field for  stage2 connectivity
 		 */
-		HOSTNAME("hostname", "", "environment.hostname"),
+		HOSTNAME("hostname", ""),
 
 		/**
 		 * The stage name (in all CAPS as seen in /x/web/STAGEXX).<br>
@@ -665,7 +610,7 @@ public class CatPawConfig {
 		 * <code>STAGE_NAME</code> will be set to
 		 * <code><b>STAGE2SC4000</b></code>
 		 */
-		STAGE_NAME("stageName", null, "environment.stageName"),
+		STAGE_NAME("stageName", null),
 
 		/**
 		 * The  URL <br>
@@ -679,122 +624,44 @@ public class CatPawConfig {
 		 * <code>PAYPAL_URL</code> will be set to
 		 * <code><b>https://www.stage2sc4000.qa.paypal.com</b></code>
 		 */
-		PAYPAL_URL("paypalURL", null, "environment.paypalURL"),
-
-		/**
-		 * The  Admin site's URL<br>
-		 * If not explicitly set at startup, this value is derived from the
-		 * {@link CatPawConfigProperty#HOSTNAME} value. <br>
-		 * <br>
-		 * For example; <br>
-		 * <br>
-		 * If <code>HOSTNAME</code> is set to
-		 * <code>stage2sc4000.sc4.paypal.com</code>, <br>
-		 * <code>PAYPAL_ADMIN_URL</code> will be set to
-		 * <code><b>https://admin.stage2sc4000.qa.paypal.com</b></code>
-		 */
-		PAYPAL_ADMIN_URL("paypalAdminURL", null, "environment.paypalAdminURL"),
 
 		/**
 		 * The base directory for CatPaw files<br>
 		 * Default is set to <b>clawsFiles</b>
 		 */
-		BASE_DIR("baseDir", "clawsFiles", "jawsFiles.baseDir"),
+		BASE_DIR("baseDir", "clawsFiles"),
 
 		/**
 		 * The logs directory of CatPaw
 		 */
-		LOGS_DIR("logsDir", BASE_DIR.defaultValue + "/clawsLogs", "jawsFiles.logsDir"),
+		LOGS_DIR("logsDir", BASE_DIR.defaultValue + "/clawsLogs"),
 
 		/**
 		 * The work directory of CatPaw
 		 */
-		WORK_DIR("workDir", BASE_DIR.defaultValue + "/clawsWorkDir", "jawsFiles.workDir"),
-
-		/**
-		 * The SDK environment (stage2, live, etc).<br>
-		 * Used in Jaws by {@link SDK}.
-		 */
-		SDK_ENVIRONMENT("sdk.environment", "stage2", "sdk.environment"),
-
-		/**
-		 * The NVP API URL (based off the hostname).<br>
-		 * Used in Jaws by {@link NVPPostImpl}. 
-		 */
-		NVP_URL("nvpUrl", null, "nvp.url"),
+		WORK_DIR("workDir", BASE_DIR.defaultValue + "/clawsWorkDir"),
 
 		/**
 		 * Should we log to the console (dev, user, off/no/false).<br>
 		 * Used in Jaws by {@link com.dd.test.jaws.logging.JawsLogger}.<br>
 		 * Default is set to <b>false</b>
 		 */
-		LOG_TO_CONSOLE("log.console", "false", "jawsConfig.log.console"),
+		LOG_TO_CONSOLE("log.console", "false");
 
-		/**
-		 * The amount of logging done by CatPaw that the user wants to see.<br>
-		 * Used in Jaws by {@link com.dd.test.jaws.logging.JawsLogger}.<br>
-		 * Default is set to <b>FINE</b>
-		 */
-		LOG_LEVEL_USER("log.userLevel", "FINE", "jawsConfig.log.userLevel"),
-
-		/**
-		 * The amount of logging done by CatPaw that the developer wants to
-		 * see.<br>
-		 * Used in Jaws by {@link com.dd.test.jaws.logging.JawsLogger}.<br>
-		 * Default is set to <b>ALL</b>
-		 */
-		LOG_LEVEL_DEV("log.devLevel", "ALL", "jawsConfig.log.devLevel"),
-
-		/**
-		 * The SSH user used to login to the stage.<br>
-		 * Used in Jaws by {@link com.dd.test.jaws.execution.Execution}.<br>
-		 * Default is set to <b>Windows user</b> unless provided different
-		 * value.
-		 */
-		SSH_USER("sshUser", null, "environment.sshUser"),
-
-		/**
-		 * Timeout for an execution command, in milliseconds.<br>
-		 * Used in Jaws by {@link com.dd.test.jaws.execution.Execution}.<br>
-		 * Also used in CatPaw to configure Selenium timeouts/<br>
-		 * Default is set to <b>120000</b>
-		 */
-		EXECUTION_TIMEOUT("executionTimeout", "120000", "jawsConfig.executionTimeout"),
-
-		/**
-		 * The identity file to use when ssh'ing to the stage.<br>
-		 * Used in Jaws by {@link com.dd.test.jaws.execution.Execution}.
-		 */
-		IDENTITY_FILE("identityFile", null, "jawsConfig.identityFile"),
-
-		/**
-		 * Automatically log pages source code.<br>
-		 * Used in conjunction with
-		 * {@link CatPawConfigProperty#AUTO_SCREEN_SHOT}.<br>
-		 * Default is set to <b>true</b><br>
-		 * <br>
-		 * 
-		 * <strong>Note:</strong> This setting also controls page logging in
-		 * Jaws where HTMLUnit is used for web traversal.
-		 */
-		LOG_PAGES("logPages", "true", "navigation.logPages");
 
 		private String name = null;
-		private String jawsName = null;
 		private String defaultValue = null;
 		private int intDefaultValue;
 
-		private CatPawConfigProperty(String name, String defaultValue, String jawsName) {
+		private CatPawConfigProperty(String name, String defaultValue) {
 			this.name = name;
 			this.defaultValue = defaultValue;
-			this.jawsName = jawsName;
 		}
 
-		private CatPawConfigProperty(String name, int intDefaultValue, String jawsName) {
+		private CatPawConfigProperty(String name, int intDefaultValue) {
 			// System.out.println("in int" + name + "---" + intDefaultValue);
 			this.name = name;
 			this.intDefaultValue = intDefaultValue;
-			this.jawsName = jawsName;
 		}
 
 		/**
@@ -804,15 +671,6 @@ public class CatPawConfig {
 		 */
 		public String getName() {
 			return this.name;
-		}
-
-		/**
-		 * Returns the Jaws name of configuration property
-		 * 
-		 * @return Jaws analog name of configuration property
-		 */
-		public String getJawsName() {
-			return this.jawsName;
 		}
 
 		/**
