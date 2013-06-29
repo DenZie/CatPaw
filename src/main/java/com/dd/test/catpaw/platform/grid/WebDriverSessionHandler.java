@@ -4,7 +4,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.logging.Level;
 
 
 
@@ -24,9 +23,9 @@ import java.util.logging.Level;
  * 
  * <P>Code Sample : </P>
  *  <pre>
- *       Grid.driver().get(CatPawConfig.getConfigProperty(CatPawConfigProperty.PAYPAL_URL));
+ *       Grid.driver().get(CatPawConfig.getConfigProperty(CatPawConfigProperty.catpaw_URL));
  *       
- *       Grid.driver().findElementById("login_email").sendKeys("beamdaddy@paypal.com");
+ *       Grid.driver().findElementById("login_email").sendKeys("beamdaddy@catpaw.com");
  *       Grid.driver().findElementById("login_password").sendKeys("11111111");
  *       Grid.driver().findElementByName("submit.x").click();
  *       

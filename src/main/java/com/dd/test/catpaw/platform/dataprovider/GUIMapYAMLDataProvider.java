@@ -64,7 +64,6 @@ public class GUIMapYAMLDataProvider implements DataProvider {
 	 *            Signifies the language or site language to read.
 	 */
 	@SuppressWarnings("unchecked")
-	@Override
 	public HashMap<String, String> getDataProviderValues(String locale) {
 //		// logger.entering(locale);
 

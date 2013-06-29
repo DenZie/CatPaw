@@ -10,7 +10,6 @@ public class StateFilter implements Filter {
 		this.state = state;
 	}
 
-	@Override
 	public boolean isValid(ITestResult result) {
 		return result.getStatus() == this.state;
 	}

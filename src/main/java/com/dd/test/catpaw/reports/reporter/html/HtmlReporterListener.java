@@ -102,14 +102,6 @@ public class HtmlReporterListener implements IReporter{
 		out = createWriter(outputDir);
 		startHtml(out);
 
-	
-		if (CatPawConfig.getBoolConfigProperty(CatPawConfigProperty.CAL_LOG)) {
-			CatPawConfig.getConfigProperty(CatPawConfigProperty.STAGE_NAME);
-			// TODO :: getCalLog returns a list of test cases which CAL info could
-			// not be acquired for. We should do possibly do something with this list??
-//			TestCaseCalData.getCalLog(suites);
-		}
-
 		List<Line> lines = createSummary(suites);
 		createDetail(lines);
 		createMethodContent(suites, outputDir);
@@ -333,14 +325,6 @@ public class HtmlReporterListener implements IReporter{
 				contentBuffer.append("<div class='leftContent' style='float: left; width: 70%;'>");
 				contentBuffer.append("<h3>Test Log</h3>");
 				// Generate link to CAL if CAL is set to true
-				if (CatPawConfig.getBoolConfigProperty(CatPawConfigProperty.CAL_LOG)) {
-					if (result.getAttribute("calLink") != null) {
-						String calLogResponse = result.getAttribute("calLink").toString();
-						String calLogLink = "<b><a href='" + calLogResponse + "' >" + "CAL Log" + "</a></b>";
-						contentBuffer.append(calLogLink);
-						contentBuffer.append("<br/><br/>");
-					}
-				}
 				for (String line : msgs) {
 
 					WebLog logLine = new WebLog(line);

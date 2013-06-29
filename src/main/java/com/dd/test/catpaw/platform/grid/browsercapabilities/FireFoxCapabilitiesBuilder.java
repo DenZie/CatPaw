@@ -1,6 +1,5 @@
 package com.dd.test.catpaw.platform.grid.browsercapabilities;
 
-import org.openqa.selenium.Proxy;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.firefox.internal.ProfilesIni;
@@ -37,15 +36,6 @@ class FireFoxCapabilitiesBuilder extends DefaultCapabilitiesBuilder {
 			profile = new FirefoxProfile();
 		}
 
-		if (CatPawConfig.getBoolConfigProperty(CatPawConfigProperty.PERFORM_APPSCAN)) {
-			Proxy proxy = new Proxy();
-			String proxyHost = CatPawConfig.getConfigProperty(CatPawConfigProperty.PROXY_HOST) + ":"
-					+ CatPawConfig.getConfigProperty(CatPawConfigProperty.PROXY_PORT);
-			proxy.setHttpProxy(proxyHost);
-			proxy.setFtpProxy(proxyHost);
-			proxy.setSslProxy(proxyHost);
-			profile.setProxyPreferences(proxy);
-		}
 		String userAgent = CatPawConfig.getConfigProperty(CatPawConfigProperty.SELENIUM_USERAGENT);
 		if ((userAgent != null) && (!userAgent.trim().isEmpty())) {
 			profile.setPreference("general.useragent.override", userAgent);

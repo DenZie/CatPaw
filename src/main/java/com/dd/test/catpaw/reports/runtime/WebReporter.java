@@ -138,13 +138,6 @@ public class WebReporter {
             // send to CAL service
             String cal = null;
             String source = null;
-            if (CatPawConfig.getBoolConfigProperty(CatPawConfigProperty.CAL_LOG)) {
-                if (Grid.driver() != null){
-                    source = Grid.driver().getPageSource();
-                }
-                cal = "web=  " + ((source.split("rlogid : "))[1]).split("\n")[0];
-                cal = cal.replace("\n", "");
-            }
             current.currentLog.setCal(cal);
 
             // creating a string from all the info for the report to deserialize
@@ -181,11 +174,7 @@ public class WebReporter {
 
             String cal = null;
             current.currentLog.setHref(null);
-            if (CatPawConfig.getBoolConfigProperty(CatPawConfigProperty.CAL_LOG)) {
-                cal = "api=  " + id;
-            }
             current.currentLog.setCal(cal);
-
             Reporter.log(current.currentLog.toString());
             current.currentLog = null;
         } catch (Throwable e) {

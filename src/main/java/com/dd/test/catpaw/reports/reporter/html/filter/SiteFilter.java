@@ -12,7 +12,6 @@ public class SiteFilter implements Filter {
 		this.site = site;
 	}
 
-	@Override
 	public boolean isValid(ITestResult result) {
 		return Arrays.asList(result.getMethod().getGroups()).contains(site);
 	}

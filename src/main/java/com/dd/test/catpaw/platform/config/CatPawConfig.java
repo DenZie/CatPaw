@@ -512,6 +512,14 @@ public class CatPawConfig {
 		SITE_LOCALE("siteLocale", "US"),
 
 		/**
+		 * The SSH user used to login to the stage.<br>
+		 * Used in Jaws by {@link com.paypal.test.jaws.execution.Execution}.<br>
+		 * Default is set to <b>Windows user</b> unless provided different
+		 * value.
+		 */
+		SSH_USER("sshUser", null),
+
+		/**
 		 * Browser specified by user.<br>
 		 * Default is set to <b>firefox</b>
 		 */
@@ -646,7 +654,19 @@ public class CatPawConfig {
 		 * Used in Jaws by {@link com.dd.test.jaws.logging.JawsLogger}.<br>
 		 * Default is set to <b>false</b>
 		 */
-		LOG_TO_CONSOLE("log.console", "false");
+		LOG_TO_CONSOLE("log.console", "false"),
+		
+		/**
+		 * Automatically log pages source code.<br>
+		 * Used in conjunction with
+		 * {@link BluefinConfigProperty#AUTO_SCREEN_SHOT}.<br>
+		 * Default is set to <b>true</b><br>
+		 * <br>
+		 * 
+		 * <strong>Note:</strong> This setting also controls page logging in
+		 * Jaws where HTMLUnit is used for web traversal.
+		 */
+		LOG_PAGES("logPages", "true");
 
 
 		private String name = null;

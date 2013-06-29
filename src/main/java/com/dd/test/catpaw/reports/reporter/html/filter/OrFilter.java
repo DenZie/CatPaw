@@ -10,7 +10,6 @@ public class OrFilter implements Filter {
 		this.filters = filters;
 	}
 
-	@Override
 	public boolean isValid(ITestResult result) {
 		for (int i = 0; i < filters.length; i++) {
 			if (filters[i].isValid(result)) {

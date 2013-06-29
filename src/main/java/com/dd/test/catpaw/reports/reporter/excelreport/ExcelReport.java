@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -29,7 +28,6 @@ import org.testng.ITestContext;
 import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.xml.XmlSuite;
-
 
 import com.dd.test.catpaw.platform.config.CatPawConfig;
 import com.dd.test.catpaw.platform.config.CatPawConfig.CatPawConfigProperty;
@@ -140,8 +138,6 @@ public class ExcelReport implements IReporter {
 
 		Format formatter = new SimpleDateFormat("MM-dd-yyyy-HH-mm");
 		String currentDate = formatter.format(new Date());
-		String sReleaseCycle = CatPawConfig.getConfigProperty(CatPawConfigProperty.RELEASE_CYCLE);
-		String sPushName = CatPawConfig.getConfigProperty(CatPawConfigProperty.PUSH_NAME);
 		
 		reportInfo.put("Report generated on :", currentDate);
 		reportInfo.put("Report Owner : ", System.getProperty("user.name"));
@@ -151,8 +147,6 @@ public class ExcelReport implements IReporter {
 		reportInfo.put("Build Id : ", ReportDataGenerator.buildId.toString());
 		reportInfo.put("Stream : ", ReportDataGenerator.streamName);
 		reportInfo.put("DB Version : ", ReportDataGenerator.dbVersion);
-		reportInfo.put("Release Cycle : ", (sReleaseCycle.equals("Unknown")?"Not Specified":sReleaseCycle));
-		reportInfo.put("Push Name : ", (sPushName.equals("Push")?"Not Specified":sPushName));
 		
 		
 		int rowNum = 0, colNum = 0;

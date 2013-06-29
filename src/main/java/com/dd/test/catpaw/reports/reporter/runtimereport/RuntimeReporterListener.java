@@ -3,8 +3,6 @@ package com.dd.test.catpaw.reports.reporter.runtimereport;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;

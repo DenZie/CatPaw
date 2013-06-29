@@ -1,9 +1,6 @@
 package com.dd.test.catpaw.platform.grid.browsercapabilities;
 
-import java.util.logging.Level;
-
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 
 import com.dd.test.catpaw.platform.config.ExtendedConfig;
 import com.dd.test.catpaw.platform.grid.BrowserFlavors;

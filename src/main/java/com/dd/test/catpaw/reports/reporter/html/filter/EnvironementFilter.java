@@ -6,7 +6,6 @@ import org.testng.ITestResult;
 
 public class EnvironementFilter implements Filter {
 
-	@Override
 	public boolean isValid(ITestResult result) {
 		return Arrays.asList(result.getMethod().getGroups()).contains("envt");
 	}

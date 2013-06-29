@@ -119,7 +119,6 @@ public class SummarizedData implements Comparable<SummarizedData>{
 		}
 		
 	}
-	@Override
 	public int compareTo(SummarizedData o) {
 			
 		return this.getsName().compareTo(((SummarizedData) o).getsName());

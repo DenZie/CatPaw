@@ -20,10 +20,6 @@ public class TestCaseUtility {
 	
 	public static void appendECaseId(IInvokedMethod method, ITestResult testResult) {
 		// logger.entering(new Object[]{method, testResult});
-	    if (! CatPawConfig.getBoolConfigProperty(CatPawConfigProperty.UPDATE_EZTRACKER)) {
-	//    	// logger.exiting();
-	        return;
-	    }
 		if (! method.isTestMethod()) {
 			// logger.exiting();
 		    return;

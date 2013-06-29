@@ -16,7 +16,6 @@ import com.dd.test.catpaw.platform.config.CatPawConfig;
 import com.dd.test.catpaw.platform.config.ServiceLoaderManager;
 import com.dd.test.catpaw.reports.reporter.services.TestCaseUtility;
 import com.dd.test.catpaw.reports.runtime.WebReporter;
-//import com.dd.test.catpaw.reports.reporter.services.TestCaseCalData;
 
 /**
  * Contains the logic that will take care of all the selenium related
@@ -65,8 +64,6 @@ public class SeleniumGridListener implements IInvokedMethodListener, ISuiteListe
 				LocalGridManager.spawnLocalHub(webTestConfig.getBrowser());
 
 				synchronized (this) {
-					Long threadId = Thread.currentThread().getId();
-
 					if (webTestConfig.getOpenNewSession()) {
 						// if we already have a session with this name, on this
 						// thread, close it

@@ -3,9 +3,6 @@ package com.dd.test.catpaw.platform.grid;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.util.logging.Handler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
@@ -21,7 +18,6 @@ import org.openqa.grid.web.Hub;
 import org.openqa.selenium.server.RemoteControlConfiguration;
 import org.openqa.selenium.server.SeleniumServer;
 
-
 import com.dd.test.catpaw.platform.config.CatPawConfig;
 import com.dd.test.catpaw.platform.config.CatPawConfig.CatPawConfigProperty;
 
@@ -30,8 +26,6 @@ import com.dd.test.catpaw.platform.config.CatPawConfig.CatPawConfigProperty;
  * This class contains methods to start and shutdown local grid.
  */
 public class LocalGridManager {
-
-
 
 	private static boolean wasLocalHubStarted = false;
 	private static boolean wasLocalNodeStarted = false;
@@ -47,7 +41,6 @@ public class LocalGridManager {
 	 * This method is responsible for spawning a local hub for supporting local executions
 	 */
 	public static synchronized void spawnLocalHub(String browser) {
-		// logger.entering(browser);
 		boolean attachiPhoneNode = false;
 		if ((browser != null ) && !(browser.isEmpty()) ){
 			attachiPhoneNode = browser.endsWith(BrowserFlavors.IPHONE.getBrowser());
@@ -57,7 +50,6 @@ public class LocalGridManager {
 			environmentStatus = environmentStatus && wasIPhoneNodeRegistered;
 		}
 		if ((!isLocalRC) || (environmentStatus)) {
-			// logger.exiting();
 			return;
 		}
 
@@ -73,7 +65,6 @@ public class LocalGridManager {
 		} catch (JSONException e1) {
 			String errorMsg = "An error occured while working with the JSON file : " + localJSONFileName
 					+ ". Root cause: ";
-			// logger.log(Level.SEVERE, errorMsg, e1);
 			throw new GridConfigurationException(errorMsg, e1);
 		}
 		if (attachiPhoneNode) {
@@ -91,28 +82,8 @@ public class LocalGridManager {
 		// locally.
 		try {
 			if (!wasLocalHubStarted) {
-			    //HACK :: Hub() blindly adds another ConsoleHandler to the RootLogger and changes the log Level!!!.. 
-			    //We'll want to undo all Hub()'s behavior...
-			    Handler[] handlers = Logger.getLogger("").getHandlers();
-			    Level level = Logger.getLogger("").getLevel();
-			    
-				localHub = new Hub(config);
-				
-				//HACK :: put the RootLogger back into the original state
-				//remove all handlers first
-				for (Handler handler : Logger.getLogger("").getHandlers()) {
-				    Logger.getLogger("").removeHandler(handler);
-				}
-				//put the original ones back
-				for (Handler handler : handlers) {
-				    Logger.getLogger("").addHandler(handler);
-				}
-				//reset the log level
-				Logger.getLogger("").setLevel(level);
-				
 				localHub.start();
 				wasLocalHubStarted = true;
-				// logger.log(Level.INFO, "Local Hub spawned");
 			}
 
 			if (!wasLocalNodeStarted) {
@@ -121,18 +92,15 @@ public class LocalGridManager {
 				node = new SeleniumServer(c);
 				node.boot();
 				wasLocalNodeStarted = true;
-				// logger.log(Level.INFO, "Local node spawned");
 			}
 			URL registration = new URL(localHub.getUrl().toString() + "/grid/register");
 			if (!wasLocalNodeRegistered) {
 				registerNodeToHub(registration, request.toString());
 				wasLocalNodeRegistered = true;
-				// logger.log(Level.INFO, "Attached node to local hub " + localHub.getRegistrationURL());
 			}
 			if ((attachiPhoneNode) && (!wasIPhoneNodeRegistered)) {
 				registerNodeToHub(registration, registrationRequest.toString());
 				wasIPhoneNodeRegistered = true;
-				// logger.log(Level.INFO, "Attached iPhone node to local hub " + localHub.getRegistrationURL());
 			}
 		} catch (Exception e) {
 			// logger.log(Level.SEVERE, e.getMessage(), e);
@@ -145,21 +113,17 @@ public class LocalGridManager {
 	 * This method helps shut down the already spawned hub for local runs
 	 */
 	protected final static synchronized void shutDownHub() {
-		// logger.entering();
 		if (!isLocalRC) {
-			// logger.exiting();
 			return;
 		}
 		if (node != null) {
 			node.stop();
-			// logger.log(Level.INFO, "Local node has been stopped");
 		}
 		if (localHub != null) {
 			try {
 				localHub.stop();
-				// logger.log(Level.INFO,"Local hub has been stopped");
 			} catch (Exception e) {
-				String errorMsg = "An error occured while attempting to shut down the local Hub. Root cause: ";
+//				String errorMsg = "An error occured while attempting to shut down the local Hub. Root cause: ";
 				// logger.log(Level.SEVERE, errorMsg, e);
 			}
 		}
